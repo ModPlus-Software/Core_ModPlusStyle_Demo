@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ModPlusStyleDemo
+﻿namespace ModPlusStyleDemo
 {
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using Annotations;
@@ -27,7 +23,8 @@ namespace ModPlusStyleDemo
             get => _name;
             set
             {
-                if (Equals(value, _name)) return;
+                if (Equals(value, _name))
+                    return;
                 _name = value;
                 OnPropertyChanged();
             }
@@ -41,7 +38,8 @@ namespace ModPlusStyleDemo
             get => _doubleValue;
             set
             {
-                if (Equals(value, _doubleValue)) return;
+                if (Equals(value, _doubleValue))
+                    return;
                 _doubleValue = value;
                 OnPropertyChanged();
             }
@@ -55,7 +53,8 @@ namespace ModPlusStyleDemo
             get => _stringData;
             set
             {
-                if (Equals(value, _stringData)) return;
+                if (Equals(value, _stringData))
+                    return;
                 _stringData = value;
                 OnPropertyChanged();
             }
@@ -69,7 +68,8 @@ namespace ModPlusStyleDemo
             get => _listData;
             set
             {
-                if (Equals(value, _listData)) return;
+                if (Equals(value, _listData))
+                    return;
                 _listData = value;
                 OnPropertyChanged();
             }

@@ -5,6 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:mps="https://modplus.org/winfx/xaml/controls"
         mc:Ignorable="d" Height="250" Width="350">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <mps:Card HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="ModPlus" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center"></TextBlock>

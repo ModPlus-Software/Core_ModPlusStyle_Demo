@@ -7,7 +7,7 @@
     xmlns:mps="https://modplus.org/winfx/xaml/controls"
     xmlns:local="clr-namespace:ModPlusStyleDemo"
     mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-    Title="MainWindow" Height="600" Width="800"
+    Title="MainWindow" Height="600" Width="1000"
     SaveWindowPosition="True"
     ResizeMode="CanResizeWithGrip" ResizeBorderThickness="5"
     Loaded="MainWindow_OnLoaded">
@@ -16,72 +16,107 @@
     </Window.DataContext>
     <Window.Resources>
         <ResourceDictionary>
-
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <mps:ModPlusWindow.RightWindowCommands>
         <mps:WindowCommands>
             <Button Name="BtFlyoutModalessTest" Click="BtFlyoutModalessTest_OnClick">
-                <!--<modPlusIconPacks:PackIconMaterial Kind="Cellphone"></modPlusIconPacks:PackIconMaterial>-->
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                              Data="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z" />
+                    </Canvas>
+                </Viewbox>
             </Button>
             <Button Name="BtFlyoutTest" Click="BtFlyoutTest_OnClick">
-                <!--<mps:PackIcon Kind="Settings"></mps:PackIcon>-->
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                              Data="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+                    </Canvas>
+                </Viewbox>
             </Button>
             <Button IsEnabled="False">
-                <!--<mps:PackIcon Kind="Account"></mps:PackIcon>-->
+                <Viewbox Width="24" Height="24">
+                    <Canvas Width="24" Height="24">
+                        <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                              Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    </Canvas>
+                </Viewbox>
             </Button>
         </mps:WindowCommands>
     </mps:ModPlusWindow.RightWindowCommands>
     <mps:ModPlusWindow.Flyouts>
         <mps:FlyoutsControl>
             <mps:Flyout Name="Flyout" Header="Settings" Position="Right" IsModal="True">
-                <TextBox VerticalAlignment="Top" Width="200">some text box</TextBox>
+                <StackPanel Orientation="Vertical">
+                    <TextBox VerticalAlignment="Top" Width="200">some text box</TextBox>
+                    <Button Content="Cick me" Click="BtOpenWindowWithoutTitle_OnClick"></Button>
+                </StackPanel>
             </mps:Flyout>
             <mps:Flyout Name="FlyoutModaless" Header="Settings" Position="Right" IsModal="False">
                 <TextBox VerticalAlignment="Top" Width="200">some text box</TextBox>
             </mps:Flyout>
         </mps:FlyoutsControl>
     </mps:ModPlusWindow.Flyouts>
-    <TabControl SelectedIndex="11">
+    <TabControl>
         <TabItem Header="Colors">
-            <WrapPanel Orientation="Horizontal">
-                <WrapPanel Orientation="Vertical">
-                    <Button Margin="0">Accent</Button>
-                    <Button Background="{DynamicResource DarkGrayBrush}" Margin="0"
+            <WrapPanel Orientation="Vertical">
+                <TextBlock Margin="{DynamicResource ModPlusDefaultMargin}" FontSize="14">
+                    <Run Text="You can get icons at"></Run>
+                    <Hyperlink NavigateUri="https://materialdesignicons.com/" Click="Hyperlink_OnClick">https://materialdesignicons.com/</Hyperlink>
+                </TextBlock>
+                <WrapPanel Orientation="Horizontal">
+                    <WrapPanel Orientation="Vertical">
+                        <Button Margin="0"
+                            HorizontalAlignment="Stretch">Accent</Button>
+                        <Button Background="{DynamicResource DarkGrayBrush}" Margin="0"
+                            HorizontalAlignment="Stretch"
                             BorderBrush="{DynamicResource DarkGrayBrush}">DarkGray</Button>
-                    <Button Background="{DynamicResource FlatButtonGrayBrush}" Margin="0"
+                        <Button Background="{DynamicResource FlatButtonGrayBrush}" Margin="0"
+                            HorizontalAlignment="Stretch"
                             BorderBrush="{DynamicResource FlatButtonGrayBrush}">FlatButtonGray</Button>
-                    <Button Background="{DynamicResource MidGrayBrush}" Foreground="{DynamicResource BlackBrush}" Margin="0"
+                        <Button Background="{DynamicResource MidGrayBrush}" Foreground="{DynamicResource BlackBrush}" Margin="0"
+                            HorizontalAlignment="Stretch"
                             BorderBrush="{DynamicResource MidGrayBrush}">MidGray</Button>
-                    <Button Background="{DynamicResource BlackBrush}" Margin="0"
+                        <Button Background="{DynamicResource BlackBrush}" Margin="0"
+                            HorizontalAlignment="Stretch"
                             BorderBrush="{DynamicResource BlackBrush}">Black brush</Button>
-                    <Button Background="{DynamicResource WhiteBrush}" Foreground="{DynamicResource BlackBrush}" Margin="0"
+                        <Button Background="{DynamicResource WhiteBrush}" Foreground="{DynamicResource BlackBrush}" Margin="0"
+                            HorizontalAlignment="Stretch"
                             BorderBrush="{DynamicResource WhiteBrush}">White brush</Button>
 
-                </WrapPanel>
-                <WrapPanel Orientation="Vertical">
-                    <TextBlock Text="Theme"></TextBlock>
-                    <ComboBox ItemsSource="{Binding Path=Themes}" Name="CbTheme"
+                    </WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <TextBlock Text="Theme" HorizontalAlignment="Center"></TextBlock>
+                        <ComboBox ItemsSource="{Binding Path=Themes}" Name="CbTheme"
                               SelectedItem="{Binding Path=CurrentTheme}"
                               SelectionChanged="CbTheme_OnSelectionChanged">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="mps:Theme">
-                                <StackPanel Orientation="Horizontal">
-                                    <Ellipse Width="30" Height="30" Fill="{Binding Path=ShowcaseBrush}"></Ellipse>
-                                    <TextBlock Text="{Binding Path=DisplayName}"></TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                </WrapPanel>
-                <WrapPanel Orientation="Vertical">
-                    <local:UserControl1></local:UserControl1>
-                </WrapPanel>
-                <WrapPanel Orientation="Vertical">
-                    <TextBlock Margin="10" Foreground="{DynamicResource ErrorBrush}" 
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate DataType="mps:Theme">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Ellipse Width="30" Height="30" Fill="{Binding Path=ShowcaseBrush}"></Ellipse>
+                                        <TextBlock Text="{Binding Path=DisplayName}"
+                                               VerticalAlignment="Center" Margin="10 0 0 0"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <TextBlock Text="See comment in UserControl constructor"
+                               HorizontalAlignment="Center"></TextBlock>
+                        <local:UserControl1></local:UserControl1>
+                    </WrapPanel>
+                    <WrapPanel Orientation="Vertical">
+                        <TextBlock Margin="10" Foreground="{DynamicResource ErrorBrush}" 
                                FontSize="24" FontWeight="Medium">Error brush</TextBlock>
-                    <TextBlock Margin="10" Foreground="{DynamicResource SuccessBrush}"
+                        <TextBlock Margin="10" Foreground="{DynamicResource SuccessBrush}"
                                FontSize="24" FontWeight="Medium">Success brush</TextBlock>
+                    </WrapPanel>
                 </WrapPanel>
             </WrapPanel>
         </TabItem>
@@ -97,29 +132,59 @@
                     <Button Content="Tool button" Style="{DynamicResource ModPlusToolButton}"></Button>
                     <WrapPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource ModPlusAccentRoundButton}">
-                            <!--<mps:PackIcon Kind="Margin"></mps:PackIcon>-->
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                          Data="M20,4V9L18.5,7.5L5.5,20.5L3.5,18.5L16.5,5.5L15,4H20M17,20A3,3 0 0,1 14,17V15A3,3 0 0,1 17,12A3,3 0 0,1 20,15V17A3,3 0 0,1 17,20M17,14A1,1 0 0,0 16,15V17A1,1 0 0,0 17,18A1,1 0 0,0 18,17V15A1,1 0 0,0 17,14M7,12A3,3 0 0,1 4,9V7A3,3 0 0,1 7,4A3,3 0 0,1 10,7V9A3,3 0 0,1 7,12M7,6A1,1 0 0,0 6,7V9A1,1 0 0,0 7,10A1,1 0 0,0 8,9V7A1,1 0 0,0 7,6Z" />
+                                </Canvas>
+                            </Viewbox>
                         </Button>
                         <Button Style="{DynamicResource ModPlusAccentRoundButton}"
                                 IsEnabled="False">
-                            <!--<mps:PackIcon Kind="AccountOutline"></mps:PackIcon>-->
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                          Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M12,13C14.67,13 20,14.33 20,17V20H4V17C4,14.33 9.33,13 12,13M12,14.9C9.03,14.9 5.9,16.36 5.9,17V18.1H18.1V17C18.1,16.36 14.97,14.9 12,14.9Z" />
+                                </Canvas>
+                            </Viewbox>
                         </Button>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource ModPlusTransparentRoundButton}">
-                            <!--<mps:PackIcon Kind="Youtube"></mps:PackIcon>-->
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                          Data="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,14.19 21.84,15.8 21.56,16.83C21.31,17.73 20.73,18.31 19.83,18.56C19.36,18.69 18.5,18.78 17.18,18.84C15.88,18.91 14.69,18.94 13.59,18.94L12,19C7.81,19 5.2,18.84 4.17,18.56C3.27,18.31 2.69,17.73 2.44,16.83C2.31,16.36 2.22,15.73 2.16,14.93C2.09,14.13 2.06,13.44 2.06,12.84L2,12C2,9.81 2.16,8.2 2.44,7.17C2.69,6.27 3.27,5.69 4.17,5.44C4.64,5.31 5.5,5.22 6.82,5.16C8.12,5.09 9.31,5.06 10.41,5.06L12,5C16.19,5 18.8,5.16 19.83,5.44C20.73,5.69 21.31,6.27 21.56,7.17Z" />
+                                </Canvas>
+                            </Viewbox>
                         </Button>
                         <Button Style="{DynamicResource ModPlusTransparentRoundButton}"
                                 IsEnabled="False">
-                            <!--<mps:PackIcon Kind="ZipBox"></mps:PackIcon>-->
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                          Data="M14,17H12V15H10V13H12V15H14M14,9H12V11H14V13H12V11H10V9H12V7H10V5H12V7H14M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
+                                </Canvas>
+                            </Viewbox>
                         </Button>
                     </WrapPanel>
                     <WrapPanel Orientation="Horizontal">
                         <Button Style="{DynamicResource ModPlusAccentRoundLargeButton}">
-                            <!--<mps:PackIcon Kind="ChartDonut"></mps:PackIcon>-->
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                          Data="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.05,17.91L17.45,16.38C16.17,18 14.21,19 12,19Z" />
+                                </Canvas>
+                            </Viewbox>
                         </Button>
                         <Button Style="{DynamicResource ModPlusAccentRoundLargeButton}"
                                 IsEnabled="False">
-                            <!--<mps:PackIcon Kind="CallMade"></mps:PackIcon>-->
+                            <Viewbox Width="24" Height="24">
+                                <Canvas Width="24" Height="24">
+                                    <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                          Data="M9,5V7H15.59L4,18.59L5.41,20L17,8.41V15H19V5" />
+                                </Canvas>
+                            </Viewbox>
                         </Button>
                     </WrapPanel>
                 </WrapPanel>
@@ -208,20 +273,18 @@
                     </StackPanel>
                 </WrapPanel>
                 <WrapPanel Orientation="Vertical">
-                    <Button Grid.Row="0" Grid.Column="0"  Name="BtUpload"
-                                        HorizontalAlignment="Left">
+                    <Button Name="BtUpload" HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
-                            <Canvas Width="20" Height="20" Margin="0 0 0 4">
+                            <Canvas Width="24" Height="24">
                                 <Path Data="M14,13V17H10V13H7L12,8L17,13M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z" 
                                                   Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=Foreground}" />
                             </Canvas>
                             <TextBlock VerticalAlignment="Center" Text="Upload" Margin="10 0 0 0"></TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Grid.Row="0" Grid.Column="1"  Name="BtDownload"
-                                        HorizontalAlignment="Right">
+                    <Button Name="BtDownload" HorizontalAlignment="Right">
                         <StackPanel Orientation="Horizontal">
-                            <Canvas Width="18" Height="18" VerticalAlignment="Center">
+                            <Canvas Width="24" Height="24" VerticalAlignment="Center">
                                 <Path Data="M17,13L12,18L7,13H10V9H14V13M19.35,10.03C18.67,6.59 15.64,4 12,4C9.11,4 6.6,5.64 5.35,8.03C2.34,8.36 0,10.9 0,14A6,6 0 0,0 6,20H19A5,5 0 0,0 24,15C24,12.36 21.95,10.22 19.35,10.03Z" 
                                                   Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=Foreground}" />
                             </Canvas>
@@ -234,7 +297,9 @@
         <TabItem Header="Boxes">
             <WrapPanel Orientation="Horizontal">
                 <WrapPanel Orientation="Vertical">
-                    <ComboBox ToolTip="Sample tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip">
+                    <ComboBox ToolTip="Sample tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip tooltip"
+                              ToolTipService.InitialShowDelay="0"
+                              HorizontalAlignment="Stretch">
                         <ComboBoxItem Content="Item1"></ComboBoxItem>
                         <ComboBoxItem Content="Item2"></ComboBoxItem>
                         <ComboBoxItem Content="Item3"></ComboBoxItem>
@@ -249,7 +314,7 @@
                         <ComboBoxItem Content="Item4"></ComboBoxItem>
                         <ComboBoxItem Content="Item1"></ComboBoxItem>
                     </ComboBox>
-                    <ComboBox IsEnabled="False">
+                    <ComboBox IsEnabled="False" Width="150">
                         <ComboBoxItem Content="Item1"></ComboBoxItem>
                         <ComboBoxItem Content="Item2"></ComboBoxItem>
                         <ComboBoxItem Content="Item3"></ComboBoxItem>
@@ -553,24 +618,29 @@
                                 mps:ShadowAssist.ShadowDepth="Depth2"></Button>
                             <Button Grid.Row="1" Style="{DynamicResource ModPlusAccentRoundButton}"
                                 mps:ShadowAssist.ShadowDepth="Depth2">
-                                <!--<mps:PackIcon Kind="Bus"></mps:PackIcon>-->
+                                <Viewbox Width="24" Height="24">
+                                    <Canvas Width="24" Height="24">
+                                        <Path Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" 
+                                              Data="M18,11H6V6H18M16.5,17A1.5,1.5 0 0,1 15,15.5A1.5,1.5 0 0,1 16.5,14A1.5,1.5 0 0,1 18,15.5A1.5,1.5 0 0,1 16.5,17M7.5,17A1.5,1.5 0 0,1 6,15.5A1.5,1.5 0 0,1 7.5,14A1.5,1.5 0 0,1 9,15.5A1.5,1.5 0 0,1 7.5,17M4,16C4,16.88 4.39,17.67 5,18.22V20A1,1 0 0,0 6,21H7A1,1 0 0,0 8,20V19H16V20A1,1 0 0,0 17,21H18A1,1 0 0,0 19,20V18.22C19.61,17.67 20,16.88 20,16V6C20,2.5 16.42,2 12,2C7.58,2 4,2.5 4,6V16Z" />
+                                    </Canvas>
+                                </Viewbox>
                             </Button>
                         </Grid>
                     </mps:Card>
-                    <GroupBox Width="100" Header="Standard">
+                    <GroupBox Width="120" Header="Standard">
                         <Button Content="Hello"></Button>
                     </GroupBox>
-                    <GroupBox Width="100" Header="Shadow"
+                    <GroupBox Width="120" Header="Shadow"
                               mps:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
                         <Button Content="Hello"></Button>
                     </GroupBox>
-                    <GroupBox Width="100" Header="Card" Style="{DynamicResource ModPlusCardGroupBox}">
+                    <GroupBox Width="120" Header="Card" Style="{DynamicResource ModPlusCardGroupBox}">
                         <Button Content="Hello"></Button>
                     </GroupBox>
-                    <GroupBox Width="100" Header="Standard" IsEnabled="False">
+                    <GroupBox Width="120" Header="Standard" IsEnabled="False">
                         <Button Content="Hello"></Button>
                     </GroupBox>
-                    <GroupBox Width="100" Header="Shadow" IsEnabled="False"
+                    <GroupBox Width="120" Header="Shadow" IsEnabled="False"
                               mps:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
                         <Button Content="Hello"></Button>
                     </GroupBox>
@@ -779,121 +849,115 @@
             <WrapPanel Orientation="Horizontal">
                 <StackPanel>
                     <Expander
-    HorizontalAlignment="Stretch"
-    Header="Expander Example 1a">
+                        HorizontalAlignment="Stretch"
+                        Header="Expander Example 1a">
                         <StackPanel
-      Orientation="Vertical"
-      Margin="24,8,24,16">
+                            Orientation="Vertical"
+                            Margin="24,8,24,16">
+                            <TextBlock Text="Your Content" />
                             <TextBlock
-        Text="Your Content" />
+                                Opacity=".68"
+                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Expander>
+                    <Expander 
+                        HorizontalAlignment="Stretch"
+                        Header="Expander Example 1b">
+                        <StackPanel
+                            Orientation="Vertical"
+                            Margin="24,8,24,16">
+                            <TextBlock Text="Your Content" />
                             <TextBlock
-        Opacity=".68"
-        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        TextWrapping="Wrap" />
+                                Opacity=".68"
+                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Expander>
                     <Expander
-    HorizontalAlignment="Stretch"
-    Header="Expander Example 1b">
+                        HorizontalAlignment="Stretch"
+                        Header="Expander Example 1c">
                         <StackPanel
-      Orientation="Vertical"
-      Margin="24,8,24,16">
+                            Orientation="Vertical"
+                            Margin="24,8,24,16">
+                            <TextBlock Text="Your Content" />
                             <TextBlock
-        Text="Your Content" />
-                            <TextBlock
-        Opacity=".68"
-        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        TextWrapping="Wrap" />
-                        </StackPanel>
-                    </Expander>
-                    <Expander
-    HorizontalAlignment="Stretch"
-    Header="Expander Example 1c">
-                        <StackPanel
-      Orientation="Vertical"
-      Margin="24,8,24,16">
-                            <TextBlock
-        Text="Your Content" />
-                            <TextBlock
-        Opacity=".68"
-        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        TextWrapping="Wrap" />
+                                Opacity=".68"
+                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Expander>
                 </StackPanel>
                 <StackPanel
-  Orientation="Horizontal">
+                    Orientation="Horizontal">
                     <Expander
-    ExpandDirection="Right">
+                        ExpandDirection="Right">
                         <Expander.Header>
                             <TextBlock
-        Text="Expander Example 3a"
-        RenderTransformOrigin=".5,.5">
+                                Text="Expander Example 3a"
+                                RenderTransformOrigin=".5,.5">
                                 <TextBlock.LayoutTransform>
-                                    <RotateTransform
-            Angle="90" />
+                                    <RotateTransform Angle="90" />
                                 </TextBlock.LayoutTransform>
                             </TextBlock>
                         </Expander.Header>
-                        <StackPanel
-      Orientation="Vertical"
-      Margin="8,24,16,24">
+                        <StackPanel Orientation="Vertical"
+                                    Margin="8,24,16,24">
+                            <TextBlock Text="Your Content" />
                             <TextBlock
-        Text="Your Content" />
-                            <TextBlock
-        Opacity=".68"
-        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        MaxWidth="180"
-        TextWrapping="Wrap" />
+                                Opacity=".68"
+                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                MaxWidth="180"
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Expander>
                     <Border
-    Width="1"
-    VerticalAlignment="Stretch"
-    SnapsToDevicePixels="True" />
+                        Width="1"
+                        VerticalAlignment="Stretch"
+                        SnapsToDevicePixels="True" />
                     <Expander
-    ExpandDirection="Right">
+                        ExpandDirection="Right">
                         <Expander.Header>
                             <TextBlock
-        Text="Expander Example 3b"
-        RenderTransformOrigin=".5,.5">
+                                Text="Expander Example 3b"
+                                RenderTransformOrigin=".5,.5">
                                 <TextBlock.LayoutTransform>
                                     <RotateTransform
-            Angle="90" />
+                                        Angle="90" />
                                 </TextBlock.LayoutTransform>
                             </TextBlock>
                         </Expander.Header>
                         <StackPanel
-      Orientation="Vertical"
-      Margin="8,24,16,24">
+                            Orientation="Vertical"
+                            Margin="8,24,16,24">
                             <TextBlock
-        Text="Your Content" />
+                                Text="Your Content" />
                             <TextBlock
-        Opacity=".68"
-        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        MaxWidth="180"
-        TextWrapping="Wrap" />
+                                Opacity=".68"
+                                Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                MaxWidth="180"
+                                TextWrapping="Wrap" />
                         </StackPanel>
                     </Expander>
                     <Border
-    Width="1"
-    VerticalAlignment="Stretch"
-    SnapsToDevicePixels="True" />
+                        Width="1"
+                        VerticalAlignment="Stretch"
+                        SnapsToDevicePixels="True" />
                     <Expander
-    ExpandDirection="Right">
+                        ExpandDirection="Right">
                         <Expander.Header>
                             <TextBlock
-        Text="Expander Example 3c"
-        RenderTransformOrigin=".5,.5">
+                                Text="Expander Example 3c"
+                                RenderTransformOrigin=".5,.5">
                                 <TextBlock.LayoutTransform>
                                     <RotateTransform
-            Angle="90" />
+                                        Angle="90" />
                                 </TextBlock.LayoutTransform>
                             </TextBlock>
                         </Expander.Header>
                         <StackPanel
-      Orientation="Vertical"
-      Margin="8,24,16,24">
+                            Orientation="Vertical"
+                            Margin="8,24,16,24">
                             <TextBlock
         Text="Your Content" />
                             <TextBlock
@@ -907,26 +971,26 @@
                 <mps:Card>
                     <StackPanel>
                         <Expander
-      HorizontalAlignment="Stretch"
-      Header="Expander Example 2a">
+                            HorizontalAlignment="Stretch"
+                            Header="Expander Example 2a">
                             <StackPanel
-        Orientation="Vertical"
-        Margin="24,8,24,16">
+                                Orientation="Vertical"
+                                Margin="24,8,24,16">
                                 <TextBlock
-          Text="Your Content" />
+                                    Text="Your Content" />
                                 <TextBlock
-          Opacity=".68"
-          Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          TextWrapping="Wrap" />
+                                    Opacity=".68"
+                                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                                    TextWrapping="Wrap" />
                             </StackPanel>
                         </Expander>
                         <Border
-      Height="1"
-      HorizontalAlignment="Stretch"
-      SnapsToDevicePixels="True" />
+                            Height="1"
+                            HorizontalAlignment="Stretch"
+                            SnapsToDevicePixels="True" />
                         <Expander
-      HorizontalAlignment="Stretch"
-      Header="Expander Example 2b">
+                            HorizontalAlignment="Stretch"
+                            Header="Expander Example 2b">
                             <StackPanel
         Orientation="Vertical"
         Margin="24,8,24,16">

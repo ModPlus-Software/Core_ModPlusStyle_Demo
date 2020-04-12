@@ -1,12 +1,12 @@
 ﻿namespace ModPlusStyleDemo
 {
-    using System;
+    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Documents;
     using ModPlusStyle;
-    using ModPlusStyle.Controls;
     using ModPlusStyle.Controls.Dialogs;
 
     /// <summary>
@@ -24,25 +24,10 @@
             Flyout.IsOpen = !Flyout.IsOpen;
         }
 
-
         private void BtOpenWindowWithoutTitle_OnClick(object sender, RoutedEventArgs e)
         {
-            Progress progressWindow = null;
-            Thread progressWindowThread = new Thread(() =>
-            {
-                progressWindow = new Progress();
-                progressWindow.ShowDialog();
-            });
-            progressWindowThread.SetApartmentState(ApartmentState.STA);
-            progressWindowThread.IsBackground = true;
-            progressWindowThread.Start();
-
-            for (int i = 0; i < 100; i++)
-            {
-                Thread.Sleep(100);
-            }
-
-            progressWindow.Dispatcher.Invoke(() => { progressWindow.Close(); });
+            var progressWindow = new Progress();
+            progressWindow.ShowDialog();
         }
 
         private void BtFlyoutModalessTest_OnClick(object sender, RoutedEventArgs e)
@@ -57,12 +42,12 @@
 
         private async void BtMessageDialog_OnClick(object sender, RoutedEventArgs e)
         {
-            await this.ShowMessageAsync("Hi, Vildar!!!", "It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =)");
+            await this.ShowMessageAsync("Hi!!!", "It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =) It's a window's dialog =)");
         }
 
         private async void BtMessageDialogAllButtons_OnClick(object sender, RoutedEventArgs e)
         {
-            await this.ShowMessageAsync("Title of dialog", "", MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary,
+            await this.ShowMessageAsync("Title of dialog", string.Empty, MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary,
                 new MetroDialogSettings(){FirstAuxiliaryButtonText = "First", SecondAuxiliaryButtonText = "Second"});
         }
 
@@ -70,7 +55,7 @@
         {
             var result = await this.ShowInputAsync("Hello!", "What is your name?");
 
-            if (result == null) //user pressed cancel
+            if (result == null) //// user pressed cancel
                 return;
 
             await this.ShowMessageAsync("Hello", "Hello " + result + "!");
@@ -100,7 +85,7 @@
                 controller.SetMessage("Baking cupcake: " + i + "...");
 
                 if (controller.IsCanceled)
-                    break; //canceled progressdialog auto closes.
+                    break; //// canceled progressDialog auto closes.
 
                 i += 1.0;
 
@@ -139,6 +124,11 @@
         {
             ForSite forSite = new ForSite(ThemeName);
             forSite.ShowDialog();
+        }
+
+        private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
+        {
+            Process.Start(((Hyperlink)sender).NavigateUri.ToString());
         }
     }
 }

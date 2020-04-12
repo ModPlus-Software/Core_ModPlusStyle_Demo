@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Windows;
     using Annotations;
 
     public class ViewModel : INotifyPropertyChanged
@@ -35,7 +34,8 @@
             get => _testTextBoxValidationValue;
             set
             {
-                if (Equals(value, _testTextBoxValidationValue)) return;
+                if (Equals(value, _testTextBoxValidationValue))
+                    return;
                 _testTextBoxValidationValue = value;
                 OnPropertyChanged();
             }
@@ -51,7 +51,8 @@
             get => _currentTheme;
             set
             {
-                if (Equals(value, _currentTheme)) return;
+                if (Equals(value, _currentTheme))
+                    return;
                 _currentTheme = value;
                 OnPropertyChanged();
             }

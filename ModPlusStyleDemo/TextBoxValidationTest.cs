@@ -7,9 +7,9 @@
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if(value.ToString() == "1")
-                return ValidationResult.ValidResult;
-            else return new ValidationResult(false, "Ooooops =)");
+            return value?.ToString() == "1"
+                ? ValidationResult.ValidResult 
+                : new ValidationResult(false, "Ooooops =)");
         }
     }
 }

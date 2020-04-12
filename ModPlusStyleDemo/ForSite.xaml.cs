@@ -2,23 +2,22 @@
 {
     using System;
     using ModPlusStyle;
-
     
     public partial class ForSite
     {
+        private readonly string _theme;
+
         public ForSite(string theme = null)
         {
             InitializeComponent();
-            this.theme = theme;
+            _theme = theme;
                 
             ContentRendered += OnContentRendered;
         }
 
-        private string theme;
-
         private void OnContentRendered(object sender, EventArgs e)
         {
-            ThemeManager.ChangeTheme(Resources, theme);
+            ThemeManager.ChangeTheme(Resources, _theme);
         }
     }
 }

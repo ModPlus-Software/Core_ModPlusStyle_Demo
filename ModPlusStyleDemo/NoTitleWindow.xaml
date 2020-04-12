@@ -12,6 +12,13 @@
     ShowIconOnTitleBar="False" ShowCloseButton="False"
     ShowTitleBar="False" 
         Title="NoTitleWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Button Name="Close" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Content="Close me" Click="Close_OnClick"></Button>
