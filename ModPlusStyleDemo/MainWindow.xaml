@@ -314,17 +314,11 @@
                         <ComboBoxItem Content="Item4"></ComboBoxItem>
                         <ComboBoxItem Content="Item1"></ComboBoxItem>
                     </ComboBox>
-                    <ComboBox IsEnabled="False" Width="150">
-                        <ComboBoxItem Content="Item1"></ComboBoxItem>
-                        <ComboBoxItem Content="Item2"></ComboBoxItem>
-                        <ComboBoxItem Content="Item3"></ComboBoxItem>
-                        <ComboBoxItem Content="Item4"></ComboBoxItem>
-                    </ComboBox>
-                    <ComboBox IsEditable="True">
-                        <ComboBoxItem Content="Item1"></ComboBoxItem>
-                        <ComboBoxItem Content="Item2"></ComboBoxItem>
-                        <ComboBoxItem Content="Item3"></ComboBoxItem>
-                        <ComboBoxItem Content="Item4"></ComboBoxItem>
+                    <ComboBox IsEnabled="False" Width="150"/>
+                    <ComboBox IsEditable="True" IsTextSearchEnabled="True"
+                              Text="{Binding Path=SomeDataSelected, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                              mps:ComboBoxAssist.CommitOnEnter="True"
+                              ItemsSource="{Binding Path=SomeData}">
                     </ComboBox>
                     <ComboBox IsEditable="True" mps:HintAssist.Hint="Hint">
                         <ComboBoxItem Content="Item1"></ComboBoxItem>
