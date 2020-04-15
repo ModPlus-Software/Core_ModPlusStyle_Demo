@@ -114,7 +114,9 @@
             if (sender is ComboBox cb && cb.SelectedItem is ModPlusStyle.Theme theme)
             {
                 ThemeName = theme.Name;
-                ThemeManager.ChangeTheme(this.Resources, theme.Name);
+                ThemeManager.ChangeTheme(Resources, theme, true);
+                if (UserControl1 != null)
+                    ThemeManager.ChangeTheme(UserControl1.Resources, theme, false);
             }
         }
 

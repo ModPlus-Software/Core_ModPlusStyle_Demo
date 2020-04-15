@@ -105,11 +105,12 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
+                        <Button Content="Standard button"></Button>
                     </WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <TextBlock Text="See comment in UserControl constructor"
                                HorizontalAlignment="Center"></TextBlock>
-                        <local:UserControl1></local:UserControl1>
+                        <local:UserControl1 x:Name="UserControl1"></local:UserControl1>
                     </WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <TextBlock Margin="10" Foreground="{DynamicResource ErrorBrush}" 

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace ModPlusStyleDemo
+﻿namespace ModPlusStyleDemo
 {
+    using System.Windows;
+
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
