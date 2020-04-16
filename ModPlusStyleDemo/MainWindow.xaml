@@ -106,6 +106,9 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
                         <Button Content="Standard button"></Button>
+                        <mps:Card Height="100">
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Some card</TextBlock>
+                        </mps:Card>
                     </WrapPanel>
                     <WrapPanel Orientation="Vertical">
                         <TextBlock Text="See comment in UserControl constructor"
