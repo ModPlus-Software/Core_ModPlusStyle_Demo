@@ -20,7 +20,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <ExponentialEase x:Key="ExpEase" EasingMode="EaseOut" Exponent="5" />
         </ResourceDictionary>
     </Window.Resources>
     <mps:ModPlusWindow.RightWindowCommands>
