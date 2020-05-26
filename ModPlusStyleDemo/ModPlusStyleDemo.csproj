@@ -137,17 +137,11 @@
     <Resource Include="Resources\ua-icon.png" />
   </ItemGroup>
   <Choose>
-    <When Condition=" '$(Configuration)'=='LocalReference' ">
-      <ItemGroup>
-        <Reference Include="ModPlusStyle">
-          <HintPath>..\..\..\..\..\ModPlus\Extensions\ModPlusStyle.dll</HintPath>
-        </Reference>
-      </ItemGroup>
-    </When>
+    <When Condition=" '$(Configuration)'=='LocalReference' " />
     <When Condition=" '$(Configuration)'=='Release' or '$(Configuration)'=='Debug' ">
       <ItemGroup>
         <PackageReference Include="ModPlusStyle">
-          <Version>2.1.0</Version>
+          <Version>3.2.0</Version>
         </PackageReference>
       </ItemGroup>
     </When>

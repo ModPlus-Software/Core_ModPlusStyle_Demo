@@ -4,6 +4,7 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Windows;
     using Annotations;
 
     public class ViewModel : INotifyPropertyChanged
@@ -58,6 +59,45 @@
                     return;
                 _currentTheme = value;
                 OnPropertyChanged();
+            }
+        }
+
+        private Visibility _transitionVisibility;
+
+        /// <summary>
+        /// Test visibility transition
+        /// </summary>
+        public Visibility TransitionVisibility
+        {
+            get => _transitionVisibility;
+            set
+            {
+                if (_transitionVisibility == value)
+                    return;
+                _transitionVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _transitionVisibilityCheck;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool TransitionVisibilityCheck
+        {
+            get => _transitionVisibilityCheck;
+            set
+            {
+                if (_transitionVisibilityCheck == value)
+                    return;
+                _transitionVisibilityCheck = value;
+                OnPropertyChanged();
+                if (value)
+                    TransitionVisibility = Visibility.Visible;
+                else 
+                    TransitionVisibility = Visibility.Hidden;
+
             }
         }
 

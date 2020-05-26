@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mps="https://modplus.org/winfx/xaml/controls"
     xmlns:local="clr-namespace:ModPlusStyleDemo"
+    xmlns:ts="https://modplus.org/winfx/xaml/transitionz"
     mc:Ignorable="d" WindowStartupLocation="CenterScreen"
     Title="MainWindow" Height="600" Width="1000"
     SaveWindowPosition="True"
@@ -19,6 +20,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <ExponentialEase x:Key="ExpEase" EasingMode="EaseOut" Exponent="5" />
         </ResourceDictionary>
     </Window.Resources>
     <mps:ModPlusWindow.RightWindowCommands>
@@ -1109,11 +1111,67 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column="0" Fill="{DynamicResource FlatButtonGrayBrush}"></Rectangle>
-                    <GridSplitter Grid.Column="1" Style="{StaticResource ModPlusGridSplitter}"
-                                  VerticalAlignment="Stretch"></GridSplitter>
+                    <GridSplitter Grid.Column="1" VerticalAlignment="Stretch"
+                                  BorderBrush="{DynamicResource DarkGrayBrush}" BorderThickness="1 0"
+                                  Margin="5" HorizontalAlignment="Center"></GridSplitter>
                     <Rectangle Grid.Column="2" Fill="{DynamicResource FlatButtonGrayBrush}"></Rectangle>
                 </Grid>
             </Grid>
+        </TabItem>
+        <TabItem Header="Transitions">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="TransitionsOpacity" Width="200" IsChecked="True">Opacity:</CheckBox>
+                    <mps:Card Width="200" Height="40"
+                              ts:Transitions.Visibility="{Binding ElementName=TransitionsOpacity, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              ts:Transitions.Opacity="{ts:OpacityParams From=0, To=1, Duration=1000, TransitionOn=Visibility}"
+                              >
+                        <TextBlock HorizontalAlignment="Center">OPACITY</TextBlock>
+                    </mps:Card>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="TransitionsBlur" Width="200" IsChecked="True">Blur:</CheckBox>
+                    <mps:Card Width="200" Height="40"
+                              ts:Transitions.Visibility="{Binding ElementName=TransitionsBlur, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              ts:Transitions.Blur="{ts:BlurParams From=20, To=0, Duration=1000, TransitionOn=Visibility}">
+                        <TextBlock HorizontalAlignment="Center">BLUR</TextBlock>
+                    </mps:Card>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="TransitionsScale" Width="200" IsChecked="True">Scale:</CheckBox>
+                    <mps:Card Width="200" Height="40"
+                              ts:Transitions.Visibility="{Binding ElementName=TransitionsScale, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              ts:Transitions.LayoutScale="{ts:ScaleParams From='0.5,0.5', To='1,1', Duration=500, TransitionOn=Visibility}">
+                        <TextBlock HorizontalAlignment="Center">SCALE</TextBlock>
+                    </mps:Card>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="TransitionsTranslateHorizontal" Width="200" IsChecked="True">Translate horizontal:</CheckBox>
+                    <mps:Card Width="200" Height="40"
+                              ts:Transitions.Visibility="{Binding ElementName=TransitionsTranslateHorizontal, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              ts:Transitions.Translate="{ts:TranslateParams From='30,0', To='0,0', Duration=500, TransitionOn=Visibility}">
+                        <TextBlock HorizontalAlignment="Center">TRANSLATE HORIZONTAL</TextBlock>
+                    </mps:Card>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="TransitionsTranslateVertical" Width="200" IsChecked="True">Translate vertical:</CheckBox>
+                    <mps:Card Width="200" Height="40"
+                              ts:Transitions.Visibility="{Binding ElementName=TransitionsTranslateVertical, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              ts:Transitions.Translate="{ts:TranslateParams From='0,30', To='0,0', Duration=500, TransitionOn=Visibility}">
+                        <TextBlock HorizontalAlignment="Center">TRANSLATE VERTICAL</TextBlock>
+                    </mps:Card>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Name="TransitionsCombine" Width="200" IsChecked="True">Translate+blur+opacity:</CheckBox>
+                    <mps:Card Width="200" Height="40"
+                              ts:Transitions.Visibility="{Binding ElementName=TransitionsCombine, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              ts:Transitions.Translate="{ts:TranslateParams From='20,0', To='0,0', Duration=300, TransitionOn=Visibility}"
+                              ts:Transitions.Blur="{ts:BlurParams From=10, To=0, Duration=300, TransitionOn=Visibility}"
+                              ts:Transitions.Opacity="{ts:OpacityParams From=0, To=1, Duration=300, TransitionOn=Visibility}">
+                        <TextBlock HorizontalAlignment="Center">TRANSLATE+BLUR+OPACITY</TextBlock>
+                    </mps:Card>
+                </StackPanel>
+            </StackPanel>
         </TabItem>
     </TabControl>
 </mps:ModPlusWindow>
