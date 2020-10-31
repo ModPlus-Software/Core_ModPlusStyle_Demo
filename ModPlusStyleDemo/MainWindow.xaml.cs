@@ -7,6 +7,7 @@
     using System.Windows.Controls;
     using System.Windows.Documents;
     using ModPlusStyle;
+    using ModPlusStyle.Controls;
     using ModPlusStyle.Controls.Dialogs;
 
     /// <summary>
@@ -131,6 +132,43 @@
         private void Hyperlink_OnClick(object sender, RoutedEventArgs e)
         {
             Process.Start(((Hyperlink)sender).NavigateUri.ToString());
+        }
+
+        private void BtShowNotificationTop_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification("This is top notification");
+        }
+
+        private void BtTopNotificationWithLongText_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification(
+                "This is top notification with long long long text: Тут какое-то уведомление, которое не желательно делать очень длинным, так как это все-же уведомления, а не окна. Для длинного текста лучше использовать MessageBox",
+                millisecondsToClose: 5000);
+        }
+
+        private void BtShowNotificationBottom_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification("This is bottom notification", NotificationPosition.Bottom);
+        }
+
+        private void BtShowTopLeftNotification_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification("This is top left notification", NotificationPosition.TopLeft);
+        }
+
+        private void BtShowTopRightNotification_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification("This is top right notification", NotificationPosition.TopRight);
+        }
+
+        private void BtShowBottomLeftNotification_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification("This is bottom left notification", NotificationPosition.BottomLeft);
+        }
+
+        private void BtShowBottomRightNotification_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowNotification("This is bottom right notification", NotificationPosition.BottomRight);
         }
     }
 }

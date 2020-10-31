@@ -1172,5 +1172,39 @@
                 </StackPanel>
             </StackPanel>
         </TabItem>
+        <TabItem Header="Notifications">
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                <Button Name="BtShowNotificationTop"
+                        Click="BtShowNotificationTop_OnClick">
+                    Show notification on top
+                </Button>
+                <Button Name="BtTopNotificationWithLongText"
+                        Click="BtTopNotificationWithLongText_OnClick">
+                    Show notification on top with long text
+                </Button>
+                <Button Name="BtShowNotificationBottom"
+                        Click="BtShowNotificationBottom_OnClick">
+                    Show bottom notification
+                </Button>
+                <Button Name="BtShowTopLeftNotification"
+                        Click="BtShowTopLeftNotification_OnClick">
+                    Show top left notification
+                </Button>
+                <Button Name="BtShowTopRightNotification"
+                        Click="BtShowTopRightNotification_OnClick">
+                    Show top right notification
+                </Button>
+                <Button Name="BtShowBottomLeftNotification"
+                        Click="BtShowBottomLeftNotification_OnClick">
+                    Show bottom left notification
+                </Button>
+                <Button Name="BtShowBottomRightNotification"
+                        Click="BtShowBottomRightNotification_OnClick">
+                    Show bottom right notification
+                </Button>
+            </StackPanel>
+        </TabItem>
     </TabControl>
 </mps:ModPlusWindow>
